@@ -21,7 +21,6 @@ public class BoardManager : MonoBehaviour {
     public int columns = 30;
     public int rows = 30;
     public Count wallCount = new Count(5, 9);
-    public GameObject exit;
     public GameObject[] floorTiles;
     public GameObject[] wallTiles;
     public GameObject[] outerWallTiles;
@@ -89,6 +88,5 @@ public class BoardManager : MonoBehaviour {
         LayoutObjectAtRandom(wallTiles, wallCount.minimum, wallCount.maximum);
         int enemyCount = level;
         LayoutObjectAtRandom(enemyTiles, enemyCount, enemyCount);
-        Instantiate(exit, new Vector3(columns - 1, rows - 1, 0f), Quaternion.identity);
     }
 }

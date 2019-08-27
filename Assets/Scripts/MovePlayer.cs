@@ -31,12 +31,15 @@ public class MovePlayer : MonoBehaviour
         int horizontal = 0;
         int vertical = 0;
 #if UNITY_STANDALONE || UNITY_WEBPLAYER
-        horizontal = (int) Input.GetAxisRaw("Horizontal");
+        /*Vector2 moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        movement = moveInput.normalized * speed;
+        */horizontal = (int) Input.GetAxisRaw("Horizontal");
         vertical = (int) Input.GetAxisRaw("Vertical");
+
 
         // Move the player around the scene.
         Move(horizontal, vertical);
-
+        
         // Turn the player to face the mouse cursor.
         Turning();
 
@@ -94,6 +97,11 @@ public class MovePlayer : MonoBehaviour
 #endif
         }
 
+    /*void FixedUpdate()
+    {
+        rb.MovePosition(rb.position + movement * Time.fixedDeltaTime);
+    }*/
+
     void Move(int h, int v)
     {
         // Set the movement vector based on the axis input.
@@ -103,7 +111,8 @@ public class MovePlayer : MonoBehaviour
         movement = movement.normalized * speed;
 
         // Move the player to it's current position plus the movement.
-        rb.AddForce(movement);
+        //rb.AddForce(movement);
+        rb.MovePosition(rb.position + movement * Time.fixedDeltaTime);
     }
 
     void Turning()
